@@ -77,16 +77,21 @@ class BadsSDK {
     Locale local = Localizations.localeOf(context);
     String lang = local.languageCode;
     String userID = "";
-    List<String> ids = await _idService.fetchAdProfileIDs();
+    List<String> ids = await _idService
+        .fetchAdProfileIDs(); // O(1) time and space complexity, since we only generate 3 IDs
     int index = Random.secure().nextInt(ids.length - 1);
     userID = ids[index];
     final uri = Uri.parse(
         "${serverURL!}/ad?user_id=$userID&lang=$lang&ad_type=${adType.index}");
-    final resp = await client.get(uri);
-    Map<String, dynamic> json = jsonDecode(resp.body);
+    final resp =
+        await client.get(uri); // O(1) time complexity, O(1) space complexity
+    Map<String, dynamic> json = jsonDecode(resp.body); // Time O(1) worst O(k)
     if (resp.statusCode == 200) {
-      List<dynamic> rawAds = json["ads"];
-      List<AdModel> models = rawAds.map((e) => AdModel.fromJson(e)).toList();
+      List<dynamic> rawAds =
+          json["ads"]; // O(1) time complexity, O(1) space complexity
+      List<AdModel> models = rawAds
+          .map((e) => AdModel.fromJson(e))
+          .toList(); // O(1) time complexity, O(1) space complexity, since only 10 ads are fetched, otherwise O(n) time complexity
       return models;
     } else {
       throw json["error"];

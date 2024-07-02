@@ -41,19 +41,21 @@ class IDService {
   }
 
   Future<List<String>> fetchAdProfileIDs() async {
+    // Time Complexity: O(3) -> O(1) constant time, since we only generate 3 IDs, Space Complexity: O(3) -> O(1)
     List<String> ids = [];
-    String rawSecret = await secretService.getSecret(SecretType.PROFILE);
+    String rawSecret = await secretService
+        .getSecret(SecretType.PROFILE); // Time Complexity: O(1) worst O(1)
     List secretComponents = rawSecret.split("::");
-    print(secretComponents);
     String secret = secretComponents[0];
     int counter = int.parse(secretComponents[1]);
     final IDGenerator idGenerator = IDGenerator(secret: secret);
     for (int i = 0; i < _amount; i++) {
+      // O(1), since we only generate 3 IDs, everytime
       String id = idGenerator.generateId(counter);
       ids.add(id);
       counter++;
     }
-    return ids;
+    return ids; // Space Complexity: O(3) -> O(1) constant time
   }
 
   Future<List<String>> fetchInteractionIDs() async {

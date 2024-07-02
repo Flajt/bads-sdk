@@ -1,6 +1,33 @@
 # bads_sdk
 
-A new Flutter plugin project.
+SDK for bads advertising project.
+
+
+## Run it
+
+Pre flight checklist:
+1. Flutter SDK
+2. Android Studio
+3. Backend running
+4. Replace all `http://*` with your backends ip+port
+5. Install `bads-app` and run it
+
+**Lets go**
+- `flutter run`
+
+
+## Time complexity
+
+- Fetching ads: `bads_sdk.dart`: ll. 70 - 94, `IDService.dart` ll. 43-58
+- Selecting ads: `bads_sdk.dart`: ll. 103-106
+- Uploading interaction: `bads_sdk.dart` ll. 117-134 & ll. 110-115, `AppIDManager.dart` ll. 5-9
+
+
+## TODO
+- More ad formats
+- Replace direct reporting with proxy based reporting 
+- Either build it nativly or drop method channels
+- TOTP?
 
 ## Getting Started
 
