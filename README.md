@@ -10,7 +10,7 @@ Pre flight checklist:
 2. Android Studio
 3. Backend running
 4. Replace all `http://*` with your backends ip+port
-5. Install `bads-app` and run it
+5. Install `bads-app` and run it (enable the notification permissions in the settings before the app launched for more infos)
 
 **Lets go**
 - `flutter run`
